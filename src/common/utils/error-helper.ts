@@ -1,5 +1,5 @@
 import { BadRequestException, ConflictException, ForbiddenException, InternalServerErrorException, UnauthorizedException } from "@nestjs/common";
-import { AppValidationError } from "../dtos/error.type";
+import { AppValidationError } from "../dtos/error.dto";
 
 export class ErrorHelper {
     static forbidden(){
