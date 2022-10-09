@@ -7,10 +7,10 @@ export class PrismaService extends PrismaClient
 
     constructor() {
         super({
-              log: [
-                { emit: 'stdout', level: 'query' },
-                { emit:"stdout",level:"error" }
-              ],
+            //   log: [
+            //     { emit: 'stdout', level: 'query' },
+            //     { emit:"stdout",level:"error" }
+            //   ],
         });
     }
     async onModuleInit() {

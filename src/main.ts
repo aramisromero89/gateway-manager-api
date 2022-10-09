@@ -10,7 +10,7 @@ async function bootstrap() {
     .build();
   const app = await NestFactory.create(AppModule);
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('', app, document);
   var appPort = process.env.PORT || '3000'
   await app.listen(Number(appPort));
 }
