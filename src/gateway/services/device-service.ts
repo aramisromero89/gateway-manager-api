@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Device, Gateway } from "@prisma/client";
+import { IdNumberInputDto } from "src/common/dtos/id-input.dto";
 import { PrismaService } from "src/common/services/prisma.service";
 import { DeviceCreateDto, DeviceEditDto } from "../dtos/device.dto";
 @Injectable()
@@ -7,7 +8,7 @@ export class DeviceService {
     
     constructor(private readonly prisma: PrismaService) { }
 
-    createDevice(input: DeviceCreateDto): Promise<Device> {
+    create(input: DeviceCreateDto): Promise<Device> {
         return this.prisma.device.create({
             data: {
                 status: input.status,
@@ -21,7 +22,7 @@ export class DeviceService {
         })
     }
     
-    editDevice(input: DeviceEditDto): Promise<Device> {
+    edit(input: DeviceEditDto): Promise<Device> {
         return this.prisma.device.update({
             where:{
                 id: input.id
@@ -32,6 +33,15 @@ export class DeviceService {
             }
         })
     }
+
+    remove(id: number): Promise<Device> {
+        return this.prisma.device.delete({
+            where:{
+                id: id
+            }
+        })
+    }
+
 
     listGatewayDevices(gatewaySN:string): Promise<Device[]>{
         return this.prisma.device.findMany({

@@ -7,7 +7,7 @@ import { GatewayDataDto, GatewayEditDto, GatewayListInputDto, GatewayListOutputD
 export class GatewayService {
     constructor(private readonly prisma: PrismaService) { }
 
-    createGateway(input: GatewayDataDto): Promise<Gateway> {
+    create(input: GatewayDataDto): Promise<Gateway> {
         return this.prisma.gateway.create({
             data: {
                 address: input.address,
@@ -16,7 +16,7 @@ export class GatewayService {
         })
     }
 
-    editGateway(input: GatewayEditDto): Promise<Gateway> {
+    edit(input: GatewayEditDto): Promise<Gateway> {
         return this.prisma.gateway.update({
             where: {
                 serialNumber: input.serialNumber
@@ -28,7 +28,7 @@ export class GatewayService {
         })
     }
 
-    details(id: string): Promise<GatewayOutputDto> {
+    details(id: string): Promise<Gateway> {
         return this.prisma.gateway.findUnique({
             where: {
                 serialNumber: id
@@ -36,6 +36,13 @@ export class GatewayService {
         })
     }
 
+    remove(id: string): Promise<Gateway> {
+        return this.prisma.gateway.delete({
+            where: {
+                serialNumber: id
+            }
+        })
+    }
 
     async list(input: GatewayListInputDto): Promise<GatewayListOutputDto> {
         const [count, items] = await this.prisma.$transaction([
