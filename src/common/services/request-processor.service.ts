@@ -62,7 +62,7 @@ export class RequestProcessorService {
                 if (e.code == "P2025")
                     ErrorHelper.conflict("No related entity found")
                 else {
-                    ErrorHelper.error("PRISMA_ERROR", e.meta)
+                    ErrorHelper.error("PRISMA_ERROR", `PRISMA-ERROR-${e.code}`)
                 }
 
             }
