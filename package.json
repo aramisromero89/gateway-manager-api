@@ -5,6 +5,9 @@
   "author": "Aramis Romero",
   "private": false,
   "license": "MIT",
+  "engines": {
+    "node": "16.17.0"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
