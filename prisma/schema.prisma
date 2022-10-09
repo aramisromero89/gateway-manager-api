@@ -27,6 +27,6 @@ model Device {
   vendor              String
   date                DateTime     @default(now())
   status              DeviceStatus
-  Gateway             Gateway      @relation(fields: [gatewaySerialNumber], references: [serialNumber])
+  Gateway             Gateway      @relation(fields: [gatewaySerialNumber], references: [serialNumber],onDelete: Cascade)
   gatewaySerialNumber String
 }
