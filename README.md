@@ -3,19 +3,27 @@
  Gateway manager API written with [Nest](https://github.com/nestjs/nest). Deployed [here](https://gateway-manager-890703.herokuapp.com)
 
 
-## Setup
-You muset set these a postrgres database connection string(E.g postgresql://postgres:postgres@localhost:5432/gateway?schema=public) and the app port environment variables
-
-```bash
-$ export DATABASE_URL={DB_URL}
-$ export PORT=80
-```
-
 ## Installation
 
 ```bash
 $ npm install
 ```
+
+## Setup
+You have to set the postrgres database connection string and the app port environment variables
+
+```bash
+# E.g postgresql://postgres:postgres@localhost:5432/gateway?schema=public
+$ export DATABASE_URL={DB_URL}
+$ export PORT=80
+```
+
+Then you have to publish you schema
+
+```bash
+$ npx prisma db push
+```
+
 
 ## Running the app
 
