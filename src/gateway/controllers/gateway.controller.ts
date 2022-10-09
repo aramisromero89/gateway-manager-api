@@ -1,5 +1,5 @@
 import { Body, Controller, Post } from "@nestjs/common";
-import { ApiCreatedResponse,ApiTags } from "@nestjs/swagger";
+import { ApiCreatedResponse, ApiTags } from "@nestjs/swagger";
 import { Gateway } from "@prisma/client";
 import { IdStringInputDto } from "src/common/dtos/id-input.dto";
 import { RequestProcessorService } from "src/common/services/request-processor.service";
@@ -20,7 +20,7 @@ export class GatewayController {
         type: GatewayOutputDto,
     })
     create(@Body() input: GatewayDataDto): Promise<Gateway> {
-        return this.requestProcessor.processRequest(input, GatewayDataDto, () => this.gatewayService.createGateway(input))
+        return this.requestProcessor.processRequest(input, GatewayDataDto, () => this.gatewayService.create(input))
     }
 
     @Post("edit")
@@ -28,7 +28,7 @@ export class GatewayController {
         type: GatewayOutputDto,
     })
     edit(@Body() input: GatewayEditDto): Promise<Gateway> {
-        return this.requestProcessor.processRequest(input, GatewayEditDto, () => this.gatewayService.editGateway(input))
+        return this.requestProcessor.processRequest(input, GatewayEditDto, () => this.gatewayService.edit(input))
     }
 
     @Post("detail")
@@ -37,6 +37,14 @@ export class GatewayController {
     })
     detail(@Body() input: IdStringInputDto): Promise<Gateway> {
         return this.requestProcessor.processRequest(input, IdStringInputDto, () => this.gatewayService.details(input.id))
+    }
+
+    @Post("remove")
+    @ApiCreatedResponse({
+        type: GatewayOutputDto,
+    })
+    remove(@Body() input: IdStringInputDto): Promise<Gateway> {
+        return this.requestProcessor.processRequest(input, IdStringInputDto, () => this.gatewayService.remove(input.id))
     }
 
     @Post("list")
