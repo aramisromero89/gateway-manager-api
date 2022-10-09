@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
 import { validate, ValidationError } from 'class-validator';
-import { AppValidationError } from '../dtos/error.type';
+import { AppValidationError } from '../dtos/error.dto';
 import { ErrorHelper } from '../utils/error-helper';
 
 
@@ -38,7 +38,7 @@ export class RequestProcessorService {
         return errors
     }
 
-    async processRequest<T>(input: any, inputType: any, job: () => Promise<T>,restrictPeriod = false): Promise<T> {        
+    async processRequest<T>(input: any, inputType: any, job: () => Promise<T>, restrictPeriod = false): Promise<T> {
 
         let inputErrors = []
 
@@ -59,7 +59,12 @@ export class RequestProcessorService {
             return res
         } catch (e) {
             if (e instanceof Prisma.PrismaClientKnownRequestError) {
-                ErrorHelper.error("PRISMA_ERROR", [e.code, e.meta, e.stack])
+                if (e.code == "P2025")
+                    ErrorHelper.conflict("No related entity found")
+                else {
+                    ErrorHelper.error("PRISMA_ERROR", e.meta)
+                }
+
             }
             throw e
         }
