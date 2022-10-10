@@ -1,7 +1,8 @@
 ## Description
 
  Gateway manager API written with [Nest](https://github.com/nestjs/nest). Deployed [here](https://gateway-manager-890703.herokuapp.com).
-
+ 
+ Any commits to master branch will update the service on Heroku until november when the free plan will be gone :( .
 
 ## Installation
 
