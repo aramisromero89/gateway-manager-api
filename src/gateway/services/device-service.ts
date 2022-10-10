@@ -42,6 +42,14 @@ export class DeviceService {
         })
     }
 
+    detail(id: number): Promise<Device>{
+        return this.prisma.device.findUnique({
+            where:{
+                id: id
+            }
+        })
+
+    }
 
     listGatewayDevices(gatewaySN:string): Promise<Device[]>{
         return this.prisma.device.findMany({

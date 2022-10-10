@@ -26,4 +26,6 @@ export class DeviceEditDto extends DeviceDataDto {
 }
 
 export class DeviceOutputDto extends DeviceEditDto {
+    date: Date
+    gatewaySerialNumber: string  
 }

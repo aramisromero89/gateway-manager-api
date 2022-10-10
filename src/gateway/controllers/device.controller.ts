@@ -31,12 +31,20 @@ export class DeviceController {
         return this.requestProcessor.processRequest(input, DeviceEditDto, () => this.deviceService.edit(input))
     }
 
+    @Post("detail")
+    @ApiCreatedResponse({
+        type: DeviceOutputDto,
+    })
+    detail(@Body() input: IdNumberInputDto): Promise<Device> {
+        return this.requestProcessor.processRequest(input, IdNumberInputDto, () => this.deviceService.detail(input.id))
+    }
+
     @Post("remove")
     @ApiCreatedResponse({
         type: DeviceOutputDto,
     })
     remove(@Body() input: IdNumberInputDto): Promise<Device> {
-        return this.requestProcessor.processRequest(input, DeviceEditDto, () => this.deviceService.remove(input.id))
+        return this.requestProcessor.processRequest(input, IdNumberInputDto, () => this.deviceService.remove(input.id))
     }
 
     @ApiCreatedResponse({
