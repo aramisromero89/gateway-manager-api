@@ -21,8 +21,7 @@ describe('GatewayController', () => {
 
     describe('List', () => {
         it('First element should have name "g1" ', async () => {
-            let res = await gatewayController.list({ count: 2, page: 0 })
-
+            let res = await gatewayController.list({ count: 2, page: 1 })
             expect(res.items[0].name).toEqual("g1");
         });
     });
