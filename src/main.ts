@@ -8,11 +8,11 @@ async function bootstrap() {
     .setTitle('Gateway manager')
     .setDescription('Gateway manager API')
     .build();
-  const app = await NestFactory.create(AppModule);
-  app.enableCors();
+  const app = await NestFactory.create(AppModule);  
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('', app, document);
   var appPort = process.env.PORT || '3000'
+  app.enableCors();
   await app.listen(Number(appPort));
 }
 bootstrap();
