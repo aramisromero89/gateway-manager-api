@@ -30,6 +30,7 @@ export class GatewayListInputDto {
 
     @IsNotEmpty()
     @IsNumber()
+    @Min(1)
     page: number
 
 }

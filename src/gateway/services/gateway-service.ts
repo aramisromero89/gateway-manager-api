@@ -48,7 +48,7 @@ export class GatewayService {
         const [count, items] = await this.prisma.$transaction([
             this.prisma.gateway.count(),
             this.prisma.gateway.findMany({
-                skip: input.count * input.page,
+                skip: input.count * (input.page - 1),
                 take: input.count,
                 select: {
                     address: true,
