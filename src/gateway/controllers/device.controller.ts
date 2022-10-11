@@ -1,6 +1,7 @@
-import { Body, Controller, Post } from "@nestjs/common";
-import { ApiCreatedResponse, ApiTags } from "@nestjs/swagger";
+import { Body, Controller, Post, UseGuards } from "@nestjs/common";
+import { ApiBearerAuth, ApiCreatedResponse, ApiTags } from "@nestjs/swagger";
 import { Device } from "@prisma/client";
+import { AuthGuard } from "src/auth/middleware/auth.guard";
 import { IdNumberInputDto, IdStringInputDto } from "src/common/dtos/id-input.dto";
 import { RequestProcessorService } from "src/common/services/request-processor.service";
 import { DeviceCreateDto, DeviceEditDto, DeviceOutputDto } from "../dtos/device.dto";
@@ -9,6 +10,8 @@ import { GatewayService } from "../services/gateway-service";
 
 @Controller("device")
 @ApiTags("device")
+@ApiBearerAuth()
+@UseGuards(AuthGuard)
 export class DeviceController {
     constructor(
         private readonly deviceService: DeviceService,
