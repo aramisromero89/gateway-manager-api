@@ -6,6 +6,7 @@ async function bootstrap() {
   require('dotenv').config()
   const config = new DocumentBuilder()
     .setTitle('Gateway manager')
+    .addBearerAuth()
     .setDescription('Gateway manager API')
     .build();
   const app = await NestFactory.create(AppModule);  
