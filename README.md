@@ -11,12 +11,13 @@ $ npm install
 ```
 
 ## Setup
-You have to set the postrgres database connection string and the app port environment variables
+You have to set the following environment variables
 
 ```bash
 # E.g postgresql://postgres:postgres@localhost:5432/gateway?schema=public
 $ export DATABASE_URL={DB_URL}
 $ export PORT=80
+$ export JWT_SECRET=some-secret
 ```
 
 Then you have to publish you schema
